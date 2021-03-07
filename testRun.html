@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Coding Challenge</title>
+    <script src="myGroup.js"></script>	
+  </head>
+  <body>
+	<div >
+		Original Array of Elements : <input type="text" id="originalArr" placeholder="Enter comma separated numbers" value="1,2,3,4,5" style="width:250px"></input><br><br>
+		No of Equally Sized Arrays : <input type="text" id="n" style="width:20px" value="3"></input><br><br>
+		<button onclick="splitArrayElements()" > Group Array Elements</button>
+	</div><br>
+	<div >Result array
+		<p id="result"></p>
+	</div>
+	<script>
+		function splitArrayElements(){
+			var arrayInput = document.getElementById("originalArr").value;
+			var n =  document.getElementById("n").value;
+			if(arrayInput === ""){
+				alert("Please input comma separated numbers!!!");
+				document.getElementById("result").innerHTML = "";
+				return;
+			}
+			if(n === ""){
+				alert("Please input the number!!!");
+				document.getElementById("result").innerHTML = "";
+				return;
+			}
+			n = parseInt(n);
+			var originalArray = document.getElementById("originalArr").value.split(",");
+			originalArray = originalArray.map((x) => {return parseInt(x)});
+			
+			var result = groupArrayElements(originalArray, n);
+			console.log(result);
+			var resultHtml = "";
+			for (var i in result){
+			  if(resultHtml === "") {
+				resultHtml = " ["+ result[i] +"]";
+			  } else {
+				resultHtml = resultHtml + ", ["+ result[i] +"]";
+			  }
+			}
+			document.getElementById("result").innerHTML = " ["+resultHtml+" ]";
+		}
+		splitArrayElements();
+	</script>
+  </body>
+</html>
